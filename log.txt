@@ -1,0 +1,9 @@
+2018-08-14 09:12:47 TRACE UserSerializer:56 - xerx
+2018-08-14 10:30:49 TRACE UserSerializer:56 - xerx
+2018-08-14 13:24:54 TRACE UserSerializer:56 - soul
+2018-08-14 13:26:04 TRACE UserSerializer:56 - soul
+2018-08-14 13:26:04 TRACE UserSerializer:64 - 
+2018-08-14 13:26:29 TRACE UserSerializer:56 - 
+2018-08-14 13:26:29 TRACE UserSerializer:64 - 
+2018-08-14 13:27:14 TRACE UserSerializer:56 - soul
+2018-08-14 13:27:14 TRACE UserSerializer:64 - User [accounts=null, transactionHistory=null, isAdmin=false]
