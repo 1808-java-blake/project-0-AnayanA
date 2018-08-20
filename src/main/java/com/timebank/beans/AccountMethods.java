@@ -191,28 +191,36 @@ public class AccountMethods {
 		scanner.nextLine();
 	}
 
-	public List<String> viewAccounts(int userId) {
+	public void viewAccount(int userId) {
+		String s;
 		try(Connection con = cu.getConnection()) {
 			List<String> accs = new ArrayList<>();
 			PreparedStatement ps = con.prepareStatement(
-					"SELECT * FROM account_hub WHERE user_id = ?");
+					"SELECT account_name FROM account_hub WHERE user_id = ? ");
 			ps.setInt(1, userId);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				String acc = rs.getString("account_name");
-				PreparedStatement ps2 = con.prepareStatement(
-						"Select balance FROM accounts WHERE account_number = ?");
-				ps2.setInt(1, rs.getInt("account_number"));
-				ResultSet rs2 = ps2.executeQuery();
-						while(rs.next())
-							accs.add(acc +": " + rs2.getInt("balance"));
+				s = rs.getString("account_name");
+				System.out.print(s + ", ");
 			}
 			
-			return accs;
+			System.out.println("\n Which account would you like to view?");
+			s = scan.nextLine();
+			ps = con.prepareStatement(
+					"SELECT balance FROM accounts WHERE account_number IN \r\n" + 
+					"(SELECT account_number FROM account_hub WHERE user_id = ? AND account_name = ?);");
+			ps.setInt(1, userId);
+			ps.setString(2, s);
+			rs = ps.executeQuery();
+			if(rs.next())
+				System.out.println(s + ": " + rs.getInt("balance"));
+			
+			return;
 		}catch (SQLException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
-		return null;
+		return;
 	}
 	
 }

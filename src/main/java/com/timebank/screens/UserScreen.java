@@ -24,10 +24,7 @@ public class UserScreen implements Screen {
 		String s;
 		switch (selection) {
 		case "1":
-			List<String> acc = am.viewAccounts(current.user.getId());
-			acc.stream().forEach((each) -> {
-				System.out.println(each);
-			});
+			am.viewAccount(current.user.getId());
 			am.promptEnterKey();
 			break;
 		case "2":

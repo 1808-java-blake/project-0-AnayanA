@@ -19,23 +19,23 @@ public class AdminScreen implements Screen {
 		String s;
 		switch (selection) {
 		case "1":
-			System.out.println("Enter the Id of the user:");
+			System.out.println("Enter the Id of the user:"); 
 			s = scan.nextLine();
-			List<String> accs = am.viewAccounts(Integer.valueOf(s));
-			accs.stream().forEach((each) -> {
-				System.out.println(each);
-			});
+			am.viewAccount(Integer.valueOf(s));
+			am.promptEnterKey();
 			break;
 		case "2":
 			List<String> allHis = am.viewAllTransHis();
 			allHis.stream().forEach((each) -> {
 				System.out.println(each);
 			});
+			am.promptEnterKey();
 			break;
 		case "3":
 			System.out.println("Enter the Id of the user:");
 			s = scan.nextLine();
 			am.viewUserTransHis(Integer.valueOf(s));
+			am.promptEnterKey();
 			break;
 		case "4":
 			return new LoginScreen();
