@@ -1,9 +1,11 @@
 package com.timebank.beans;
 
-import java.io.Serializable;
-
-public class Admin extends BasicInfo implements Serializable{
-	private final boolean isAdmin = true;
+public class Admin {
+	private String firstName;
+	private String lastName;
+	private String username;
+	private String password;
+	private int id;
 
 	public Admin() {
 		super();
@@ -11,19 +13,62 @@ public class Admin extends BasicInfo implements Serializable{
 	}
 
 	public Admin(String firstName, String lastName, String username, String password) {
-		super(firstName, lastName, username, password);
-		// TODO Auto-generated constructor stub
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + (isAdmin ? 1231 : 1237);
+		int result = 1;
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -31,21 +76,43 @@ public class Admin extends BasicInfo implements Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Admin other = (Admin) obj;
-		if (isAdmin != other.isAdmin)
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Admin [isAdmin=" + isAdmin + "]";
+		return "Admin [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password="
+				+ password + ", id=" + id + "]";
 	}
 
+	
 	
 	
 }

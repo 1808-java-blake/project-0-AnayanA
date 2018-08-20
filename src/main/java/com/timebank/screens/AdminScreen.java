@@ -1,40 +1,44 @@
 package com.timebank.screens;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class AdminScreen implements Screen {
+import com.timebank.beans.AccountMethods;
 
+public class AdminScreen implements Screen {
+	private AccountMethods am = new AccountMethods();
 	private Scanner scan = new Scanner(System.in);
 
 	public Screen start() {
 		System.out.println("Welcome to the admin menu. would you like to:");
-		System.out.println("1. View an members account");
+		System.out.println("1. View an members accounts");
 		System.out.println("2. View all Transaction history.");
-		System.out.println("3. View members Transaction history.");
-		System.out.println("7. Logout.");
+		System.out.println("3. View a members Transaction history.");
+		System.out.println("4. Logout.");
 		String selection = scan.nextLine();
+		String s;
 		switch (selection) {
 		case "1":
-			
+			System.out.println("Enter the Id of the user:");
+			s = scan.nextLine();
+			List<String> accs = am.viewAccounts(Integer.valueOf(s));
+			accs.stream().forEach((each) -> {
+				System.out.println(each);
+			});
 			break;
 		case "2":
-
+			List<String> allHis = am.viewAllTransHis();
+			allHis.stream().forEach((each) -> {
+				System.out.println(each);
+			});
 			break;
 		case "3":
-
+			System.out.println("Enter the Id of the user:");
+			s = scan.nextLine();
+			am.viewUserTransHis(Integer.valueOf(s));
 			break;
 		case "4":
-
-			break;
-		case "5":
-
-			break;
-		case "6":
-
-			break;
-		case "7":
-
-			break;
+			return new LoginScreen();
 
 		default:
 			break;
