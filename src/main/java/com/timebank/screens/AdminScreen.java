@@ -34,7 +34,10 @@ public class AdminScreen implements Screen {
 		case "3":
 			System.out.println("Enter the Id of the user:");
 			s = scan.nextLine();
-			am.viewUserTransHis(Integer.valueOf(s));
+			List<String> his = am.viewUserTransHis(Integer.valueOf(s));
+			his.stream().forEach((each) -> {
+				System.out.println(each);
+			});
 			am.promptEnterKey();
 			break;
 		case "4":

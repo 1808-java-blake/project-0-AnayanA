@@ -59,7 +59,7 @@ public class AccountMethods {
 				ps.setInt(1, acc);
 				rs = ps.executeQuery();
 				if(rs.next()) {
-					System.out.println("How much would you like to add? ");
+					System.out.println("How much have you reaped today? ");
 					int inc = Integer.valueOf(scan.nextLine());
 					ps = con.prepareStatement("UPDATE accounts SET balance = ? WHERE account_number = ?;\r\n" 
 							+ "INSERT INTO trans_his (user_id, account_number, trans) VALUES (?, ?, ?);");
@@ -67,21 +67,24 @@ public class AccountMethods {
 					ps.setInt(2, acc);
 					ps.setInt(3, u.getId());
 					ps.setInt(4, acc);
-					ps.setString(5, s+ ": $" + inc + " Deposited");
+					ps.setString(5, s+ ":" + inc + "t Saved");
 					rs = ps.executeQuery();
 				}
 			}
 
+		}catch (NumberFormatException e2) {
+			System.out.println("You can't store words here, only souls :/");
+			return;
 		}catch (PSQLException e1){
-			System.out.println("Amount Deposited");
+			System.out.println("That's a good amount...");
 			return;
 		}catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return;
 		}
-		return;
-		
+		System.out.println("Couldn't find that account, check your spelling.");
+		return;	
 	}
 
 	public void withdraw(User u, String s) {
@@ -99,7 +102,7 @@ public class AccountMethods {
 				rs = ps.executeQuery();
 				
 				if(rs.next()) {
-					System.out.println("How much are you withdrawing? ");
+					System.out.println("How much are you using? ");
 					int dec = Integer.valueOf(scan.nextLine());
 					ps = con.prepareStatement("UPDATE accounts SET balance = ? WHERE account_number = ?;\r\n" 
 							+ "INSERT INTO trans_his (user_id, account_number, trans) VALUES (?, ?, ?);");
@@ -107,19 +110,23 @@ public class AccountMethods {
 					ps.setInt(2, acc);
 					ps.setInt(3, u.getId());
 					ps.setInt(4, acc);
-					ps.setString(5, s+ ": $" + dec + " withdrawn");
+					ps.setString(5, s+ ": $" + dec + "t wasted");
 					rs = ps.executeQuery();
 				}
 			}
 
+		}catch (NumberFormatException e2) {
+			System.out.println(":/, really? You should try the writers guild to withdraw letters.");
+			return;
 		}catch (PSQLException e1){
-			System.out.println("Amount Withdrawn");
+			System.out.println("Don't waste it.");
 			return;
 		}catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return;
 		}
+		System.out.println("Couldn't find that account, check your spelling.");
 		return;
 	}
 		
@@ -194,7 +201,6 @@ public class AccountMethods {
 	public void viewAccount(int userId) {
 		String s;
 		try(Connection con = cu.getConnection()) {
-			List<String> accs = new ArrayList<>();
 			PreparedStatement ps = con.prepareStatement(
 					"SELECT account_name FROM account_hub WHERE user_id = ? ");
 			ps.setInt(1, userId);
@@ -213,7 +219,7 @@ public class AccountMethods {
 			ps.setString(2, s);
 			rs = ps.executeQuery();
 			if(rs.next())
-				System.out.println(s + ": " + rs.getInt("balance"));
+				System.out.println(s + ": " + rs.getInt("balance") + "t");
 			
 			return;
 		}catch (SQLException e) {

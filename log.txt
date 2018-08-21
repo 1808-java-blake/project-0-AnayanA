@@ -143,3 +143,12 @@
 2018-08-19 17:13:05 TRACE UserDaoJbdc:42 - 1 records created
 2018-08-19 18:12:43 TRACE AccountMethods:34 - 1 account created
 2018-08-20 14:07:48 WARN  UserDaoJbdc:71 - failed to find user with provided credentials from the db
+2018-08-20 16:49:00 TRACE AccountMethods:40 - 1 account created
+2018-08-20 16:49:45 TRACE SignUpScreen:23 - m
+2018-08-20 16:49:46 TRACE SignUpScreen:27 - p
+2018-08-20 16:49:51 TRACE SignUpScreen:32 - finny
+2018-08-20 16:49:58 TRACE SignUpScreen:37 - tian
+2018-08-20 16:49:58 TRACE UserDaoJbdc:42 - 1 records created
+2018-08-20 16:50:10 TRACE AccountMethods:40 - 1 account created
+2018-08-20 16:50:25 TRACE AccountMethods:40 - 1 account created
+2018-08-20 16:50:29 TRACE AccountMethods:40 - 1 account created

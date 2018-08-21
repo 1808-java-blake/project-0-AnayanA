@@ -40,24 +40,19 @@ public class UserScreen implements Screen {
 			am.promptEnterKey();
 			break;
 		case "4":
-			System.out.println("System currently under maintainence.");
-			//am.wireTransfer(current.user);
-			am.promptEnterKey();
-			break;
-		case "5":
 			List<String> his = am.viewUserTransHis(current.user.getId());
 			his.stream().forEach((each) -> {
 				System.out.println(each);
 			});
 			am.promptEnterKey();
 			break;
-		case "6":
+		case "5":
 			System.out.println("What would you like to call your account?");
 			s = scan.nextLine();
 			am.addAccount(current.user, s);
 			am.promptEnterKey();
 			break;
-		case "7":
+		case "6":
 			return new LoginScreen();
 
 		default:
